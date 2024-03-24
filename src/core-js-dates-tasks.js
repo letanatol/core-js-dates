@@ -133,7 +133,7 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
 
 /**
  * Returns true if a given date is within a specified range, including both the start and end dates.
- *
+ * Возвращает значение true, если данная дата находится в заданном диапазоне, включая даты начала и окончания.
  * @typedef {{
  * start: string, // The start date in ISO 8601 format (e.g., 'YYYY-MM-DD').
  * end: string    // The end date in ISO 8601 format.
@@ -148,8 +148,15 @@ function getCountDaysOnPeriod(dateStart, dateEnd) {
  * '2024-02-02', { start: '2024-02-02', end: '2024-03-02' } => true
  * '2024-02-10', { start: '2024-02-02', end: '2024-03-02' } => true
  */
-function isDateInPeriod(/* date, period */) {
-  throw new Error('Not implemented');
+function isDateInPeriod(date, period) {
+  const currentDate = new Date(date);
+  const startObjectDate = new Date(period.start);
+  const endObjectDate = new Date(period.end);
+
+  if (currentDate >= startObjectDate && currentDate <= endObjectDate) {
+    return true;
+  }
+  return false;
 }
 
 /**
