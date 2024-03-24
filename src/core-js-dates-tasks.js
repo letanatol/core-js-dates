@@ -92,7 +92,7 @@ function getNextFriday(date) {
 
 /**
  * Returns the number of days in a specified month and year.
- *
+ * Возвращает количество дней в указанном месяце и году.
  * @param {number} month - The month as a number (1 for January, 2 for February, etc.).
  * @param {number} year - The year as a four-digit number.
  * @return {number}
@@ -101,8 +101,8 @@ function getNextFriday(date) {
  * 1, 2024 => 31
  * 2, 2024 => 29
  */
-function getCountDaysInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountDaysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
 }
 
 /**
