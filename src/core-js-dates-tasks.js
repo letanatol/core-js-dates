@@ -9,7 +9,7 @@
 
 /**
  * By the passed date returns the number of seconds elapsed since 00:00 01.01.1970.
- *
+ * К прошедшей дате возвращает количество секунд, прошедших с 00:00 01.01.1970.
  * @param {string} date - date and time.
  * @return {number} milliseconds in timestamp.
  *
@@ -17,8 +17,10 @@
  * '01 Jan 1970 00:00:00 UTC' => 0
  * '04 Dec 1995 00:12:00 UTC' => 818035920000
  */
-function dateToTimestamp(/* date */) {
-  throw new Error('Not implemented');
+function dateToTimestamp(date) {
+  const newDate = new Date(date);
+
+  return newDate.getTime();
 }
 
 /**
