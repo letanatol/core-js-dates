@@ -25,7 +25,7 @@ function dateToTimestamp(date) {
 
 /**
  * Returns the time in hh:mm:ss format from the received date.
- *
+ * Возвращает время в формате чч:мм:сс с даты получения.
  * @param {Date} date - date.
  * @return {string} time in hh:mm:ss format.
  *
@@ -33,8 +33,12 @@ function dateToTimestamp(date) {
  * Date(2023, 5, 1, 8, 20, 55) => '08:20:55'
  * Date(2015, 10, 20, 23, 15, 1) => '23:15:01'
  */
-function getTime(/* date */) {
-  throw new Error('Not implemented');
+function getTime(date) {
+  const hh = String(date.getHours()).padStart(2, '0');
+  const mm = String(date.getMinutes()).padStart(2, '0');
+  const ss = String(date.getSeconds()).padStart(2, '0');
+
+  return `${hh}:${mm}:${ss}`;
 }
 
 /**
