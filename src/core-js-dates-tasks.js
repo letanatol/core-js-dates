@@ -70,7 +70,7 @@ function getDayName(date) {
 
 /**
  * Returns the date of the next Friday from a given date.
- *
+ * Возвращает дату следующей пятницы с заданной даты.
  * @param {Date} date
  * @return {Date}
  *
@@ -79,8 +79,15 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  const objectDate = new Date(date);
+  const index = objectDate.getDay();
+  const friday = 5;
+  const indexToFriday =
+    friday - index <= 0 ? 7 + friday - index : friday - index;
+
+  objectDate.setDate(objectDate.getDate() + indexToFriday);
+  return objectDate;
 }
 
 /**
