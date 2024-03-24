@@ -107,7 +107,7 @@ function getCountDaysInMonth(month, year) {
 
 /**
  * Returns the total number of days between two dates, including both the start and end dates.
- *
+ * Возвращает общее количество дней между двумя датами, включая даты начала и окончания.
  * @param {string} dateStart - The start date of the period in ISO 8601 format.
  * @param {string} dateEnd - The end date of the period in ISO 8601 format.
  * @return {number} - The total count of days in the period.
@@ -116,8 +116,19 @@ function getCountDaysInMonth(month, year) {
  * '2024-02-01T00:00:00.000Z', '2024-02-02T00:00:00.000Z'  => 2
  * '2024-02-01T00:00:00.000Z', '2024-02-12T00:00:00.000Z'  => 12
  */
-function getCountDaysOnPeriod(/* dateStart, dateEnd */) {
-  throw new Error('Not implemented');
+function getCountDaysOnPeriod(dateStart, dateEnd) {
+  const startObjectDate = new Date(dateStart);
+  const endObjectDate = new Date(dateEnd);
+
+  const difference = endObjectDate - startObjectDate;
+  const milliseconds = 1000;
+  const seconds = 60;
+  const minutes = 60;
+  const hours = 24;
+  const millisecondsPerDay = milliseconds * seconds * minutes * hours;
+  const countDays = Math.round(difference / millisecondsPerDay);
+
+  return countDays + 1;
 }
 
 /**
