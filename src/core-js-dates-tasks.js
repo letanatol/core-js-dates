@@ -291,7 +291,7 @@ function getNextFridayThe13th(date) {
 
 /**
  * Returns the quarter of the year for a given date.
- *
+ * Возвращает квартал года за заданную дату.
  * @param {Date} date - The date for which to find the quarter.
  * @return {number} - The quarter of the year (1-4).
  *
@@ -300,8 +300,12 @@ function getNextFridayThe13th(date) {
  * Date(2024, 5, 1) => 2
  * Date(2024, 10, 10) => 4
  */
-function getQuarter(/* date */) {
-  throw new Error('Not implemented');
+function getQuarter(date) {
+  const indexMonth = date.getMonth();
+
+  const quarter = Math.floor(indexMonth / 3) + 1;
+
+  return quarter;
 }
 
 /**
