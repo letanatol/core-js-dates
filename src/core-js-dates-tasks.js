@@ -363,7 +363,8 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
 /**
  * Determines whether the year in the provided date is a leap year.
  * A leap year is a year divisible by 4, but not by 100, unless it is also divisible by 400.
- *
+ * Определяет, является ли год в указанную дату високосным годом.
+ * Високосный год - год, делящийся на 4, но не на 100, если только он не делится на 400.
  * @param {Date} date - The date from which the year will be checked.
  * @return {boolean} - True if the year is a leap year, false otherwise.
  *
@@ -372,8 +373,14 @@ function getWorkSchedule(period, countWorkDays, countOffDays) {
  * Date(2022, 2, 1) => false
  * Date(2020, 2, 1) => true
  */
-function isLeapYear(/* date */) {
-  throw new Error('Not implemented');
+function isLeapYear(date) {
+  const year = date.getFullYear();
+
+  if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+    return true;
+  }
+
+  return false;
 }
 
 module.exports = {
