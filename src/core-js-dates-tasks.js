@@ -161,7 +161,7 @@ function isDateInPeriod(date, period) {
 
 /**
  * Returns the date formatted in 'M/D/YYYY, hh:mm:ss a'.
- *
+ * Возвращает дату, отформатированную в M/D/YYYY, hh:mm:ss a'.
  * @param {string} date - The date to be formatted, in ISO 8601 format (e.g., 'YYYY-MM-DDTHH:mm:ss.sssZ').
  * @return {string} - The date formatted in 'Month/Day/Year, Hour:Minute:Second AM/PM'.
  *
@@ -170,8 +170,20 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const objectDate = new Date(date);
+  const year = objectDate.getFullYear();
+  const month = objectDate.getMonth() + 1;
+  const day = objectDate.getDate();
+  const hours = objectDate.getHours();
+  const hour = hours % 12 || 12;
+  const minutes = objectDate.getMinutes();
+  const seconds = objectDate.getSeconds();
+  const meridiem = hours >= 12 ? 'PM' : 'AM';
+
+  const formattedString = `${month}/${day}/${year}, ${hour}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds} ${meridiem}`;
+
+  return formattedString;
 }
 
 /**
