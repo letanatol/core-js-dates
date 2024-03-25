@@ -188,7 +188,7 @@ function formatDate(date) {
 
 /**
  * Returns the total number of weekend days (Saturdays and Sundays) in a specified month and year.
- *
+ * Возвращает общее количество выходных дней (субботы и воскресенья) в указанный месяц и год.
  * @param {number} month - The source month as a number (1 for January, 2 for February, etc.).
  * @param {number} year - The source year as a four-digit number.
  * @return {number} - The total count of weekend days in the month.
@@ -198,8 +198,22 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  const startObjectDate = new Date(year, month - 1, 1);
+  const endObjectDate = new Date(year, month, 0);
+  let count = 0;
+
+  for (
+    let i = startObjectDate;
+    i <= endObjectDate;
+    i.setDate(i.getDate() + 1)
+  ) {
+    if (i.getDay() === 0 || i.getDay() === 6) {
+      count += 1;
+    }
+  }
+
+  return count;
 }
 
 /**
