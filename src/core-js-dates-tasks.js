@@ -311,7 +311,8 @@ function getQuarter(date) {
 /**
  * Generates an employee's work schedule within a specified date range, based on a pattern of working and off days.
  * The start and end dates of the period are inclusive.
- *
+ * Формирует график работы работника в заданном диапазоне дат, основываясь на графике рабочих и выходных дней.
+ * Даты начала и окончания периода включены.
  * @typedef {{
  * start: string, // The start date in 'DD-MM-YYYY' format.
  * end: string    // The end date in 'DD-MM-YYYY' format.
@@ -326,8 +327,37 @@ function getQuarter(date) {
  * { start: '01-01-2024', end: '15-01-2024' }, 1, 3 => ['01-01-2024', '05-01-2024', '09-01-2024', '13-01-2024']
  * { start: '01-01-2024', end: '10-01-2024' }, 1, 1 => ['01-01-2024', '03-01-2024', '05-01-2024', '07-01-2024', '09-01-2024']
  */
-function getWorkSchedule(/* period, countWorkDays, countOffDays */) {
-  throw new Error('Not implemented');
+
+function getWorkSchedule(period, countWorkDays, countOffDays) {
+  const arrayStart = period.start.split('-');
+  const arrayEnd = period.end.split('-');
+
+  const start = new Date(arrayStart[2], arrayStart[1] - 1, arrayStart[0]);
+  const end = new Date(arrayEnd[2], arrayEnd[1] - 1, arrayEnd[0]);
+
+  const result = [];
+  const currentObjectDate = new Date(start);
+
+  while (currentObjectDate <= end) {
+    for (let i = 0; i < countWorkDays && currentObjectDate <= end; i += 1) {
+      const day = currentObjectDate.getDate().toString().padStart(2, '0');
+      const month = (currentObjectDate.getMonth() + 1)
+        .toString()
+        .padStart(2, '0');
+
+      const year = currentObjectDate.getFullYear();
+
+      result.push(`${day}-${month}-${year}`);
+
+      currentObjectDate.setDate(currentObjectDate.getDate() + 1);
+    }
+
+    for (let i = 0; i < countOffDays && currentObjectDate <= end; i += 1) {
+      currentObjectDate.setDate(currentObjectDate.getDate() + 1);
+    }
+  }
+
+  return result;
 }
 
 /**
