@@ -264,7 +264,7 @@ function getWeekNumberByDate(date) {
 /**
  * Returns the date of the next Friday the 13th from a given date.
  * Friday the 13th is considered an unlucky day in some cultures.
- *
+ * Возвращает дату следующей пятницы 13 от заданной даты.
  * @param {Date} date - The starting date to search from.
  * @return {Date} - The date of the next Friday the 13th.
  *
@@ -272,8 +272,21 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  const startObjectDate = new Date(date);
+  const indexFriday = 5;
+
+  for (let i = startObjectDate.getMonth(); i < 12; i += 1) {
+    const day13 = new Date(startObjectDate.getFullYear(), i, 13);
+
+    if (day13.getDay() === indexFriday) {
+      return day13;
+    }
+  }
+
+  startObjectDate.setFullYear(startObjectDate.getFullYear() + 1);
+
+  return getNextFridayThe13th(startObjectDate);
 }
 
 /**
